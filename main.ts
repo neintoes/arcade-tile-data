@@ -49,7 +49,7 @@ namespace tiles {
     /**
      * Sets a boolean in the data of a tile
      */
-    //% blockId=tileDataSetBoolean block="set $location $key to sprite $value"
+    //% blockId=tileDataSetBoolean block="set $location $key to boolean $value"
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
