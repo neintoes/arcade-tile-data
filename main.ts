@@ -42,7 +42,7 @@ namespace tiles {
     //% group="Data"
     //% weight=11
     //% blockGap=8
-    export function getDataSprite(location: tiles.Location, key: string): Sprite | undefined {
+    export function readDataSprite(location: tiles.Location, key: string): Sprite | undefined {
         return getDataForLocation(location, key) as Sprite;
     }
 
@@ -68,7 +68,7 @@ namespace tiles {
     //% group="Data"
     //% weight=9
     //% blockGap=8
-    export function getDataBoolean(location: tiles.Location, key: string): boolean {
+    export function readDataBoolean(location: tiles.Location, key: string): boolean {
         return getDataForLocation(location, key) as boolean || false;
     }
 
@@ -94,7 +94,7 @@ namespace tiles {
     //% group="Data"
     //% weight=7
     //% blockGap=8
-    export function getDataString(location: tiles.Location, key: string): string {
+    export function readDataString(location: tiles.Location, key: string): string {
         return getDataForLocation(location, key) as string || "";
     }
 
@@ -120,7 +120,7 @@ namespace tiles {
     //% group="Data"
     //% weight=5
     //% blockGap=8
-    export function getDataNumber(location: tiles.Location, key: string): number {
+    export function readDataNumber(location: tiles.Location, key: string): number {
         return getDataForLocation(location, key) as number || 0;
     }
 
@@ -147,7 +147,7 @@ namespace tiles {
     //% group="Data"
     //% weight=3
     //% blockGap=8
-    export function getDataImage(location: tiles.Location, key: string): Image | undefined {
+    export function readDataImage(location: tiles.Location, key: string): Image | undefined {
         return getDataForLocation(location, key) as Image;
     }
 
