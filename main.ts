@@ -20,6 +20,24 @@ namespace tiles {
         locationDataDict[locationKey][key] = value;
     }
 
+    function getSpritesAtLocation(location: tiles.Location): Sprite[] {
+        const locationKey = getLocationKey(location);
+        const data = locationDataDict[locationKey];
+        const spritesAtLocation: Sprite[] = [];
+        if (data) {
+            Object.keys(data).forEach(key => {
+                const value = data[key];
+                if (value instanceof Sprite) {
+                    spritesAtLocation.push(value);
+                }
+            });
+        }
+        return spritesAtLocation;
+    }
+
+
+
+
     /**
      * Sets a sprite in the data of a tile
      */
@@ -154,18 +172,24 @@ namespace tiles {
     /**
      * Move stored data from one tile to another
      */
-    //% blockId=tileDataMove block="move data from $originalLocation to $newLocation"
+    //% blockId=tileDataMove block="move data from $originalLocation to $newLocation || moving attached sprites $moveSprites"
     //% originalLocation.shadow=mapgettile
     //% newLocation.shadow=mapgettile
+    //% expandableArgumentMode="toggle"
     //% blockNamespace=scene color="#401255"
     //% group="Data"
     //% weight=2
     //% blockGap=8
-    export function moveData(originalLocation: tiles.Location, newLocation: tiles.Location): void {
+    export function moveData(originalLocation: tiles.Location, newLocation: tiles.Location, moveSprites: boolean = false): void {
         const originalKey = getLocationKey(originalLocation);
         const newKey = getLocationKey(newLocation);
         locationDataDict[newKey] = locationDataDict[originalKey];
         delete locationDataDict[originalKey];
+        if (moveSprites) {
+            getSpritesAtLocation(newLocation).forEach((sprite: Sprite) => {
+                tiles.placeOnTile(sprite, newLocation)
+            })
+        }
     }
 
     /**
