@@ -45,7 +45,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=12
+    //% weight=13
     //% blockGap=8
     export function setDataSprite(location: tiles.Location, key: string, value: Sprite): void {
         setDataForLocation(location, key, value);
@@ -58,7 +58,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=11
+    //% weight=12
     //% blockGap=8
     export function readDataSprite(location: tiles.Location, key: string): Sprite | undefined {
         return getDataForLocation(location, key) as Sprite;
@@ -71,7 +71,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=10
+    //% weight=11
     //% blockGap=8
     export function setDataBoolean(location: tiles.Location, key: string, value: boolean): void {
         setDataForLocation(location, key, value);
@@ -84,7 +84,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=9
+    //% weight=10
     //% blockGap=8
     export function readDataBoolean(location: tiles.Location, key: string): boolean {
         return getDataForLocation(location, key) as boolean || false;
@@ -97,7 +97,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=8
+    //% weight=9
     //% blockGap=8
     export function setDataString(location: tiles.Location, key: string, value: string): void {
         setDataForLocation(location, key, value);
@@ -110,7 +110,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=7
+    //% weight=8
     //% blockGap=8
     export function readDataString(location: tiles.Location, key: string): string {
         return getDataForLocation(location, key) as string || "";
@@ -123,10 +123,24 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=6
+    //% weight=7
     //% blockGap=8
     export function setDataNumber(location: tiles.Location, key: string, value: number): void {
         setDataForLocation(location, key, value);
+    }
+
+    /**
+     * Changes a number in the data of a tile
+     */
+    //% blockId=tileDataChangeNumber block="change $location $key data by $value"
+    //% location.shadow=mapgettile
+    //% blockNamespace=scene color="#401255"
+    //% group="Data"
+    //% weight=6
+    //% blockGap=8
+    export function changeDataNumber(location: tiles.Location, key: string, value: number): void {
+        let currentValue = readDataNumber(location, key);
+        setDataForLocation(location, key, currentValue + value);
     }
 
     /**
@@ -180,12 +194,12 @@ namespace tiles {
     //% group="Data"
     //% weight=2
     //% blockGap=8
-    export function moveData(originalLocation: tiles.Location, newLocation: tiles.Location, moveSprites: boolean = false): void {
+    export function moveData(originalLocation: tiles.Location, newLocation: tiles.Location, moveStoredSprites: boolean = false): void {
         const originalKey = getLocationKey(originalLocation);
         const newKey = getLocationKey(newLocation);
         locationDataDict[newKey] = locationDataDict[originalKey];
         delete locationDataDict[originalKey];
-        if (moveSprites) {
+        if (moveStoredSprites) {
             getSpritesAtLocation(newLocation).forEach((sprite: Sprite) => {
                 tiles.placeOnTile(sprite, newLocation)
             })
