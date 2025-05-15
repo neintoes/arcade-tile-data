@@ -45,7 +45,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=13
+    //% weight=15
     //% blockGap=8
     export function setDataSprite(location: tiles.Location, key: string, value: Sprite): void {
         setDataForLocation(location, key, value);
@@ -58,7 +58,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=12
+    //% weight=14
     //% blockGap=8
     export function readDataSprite(location: tiles.Location, key: string): Sprite | undefined {
         return getDataForLocation(location, key) as Sprite;
@@ -71,7 +71,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=11
+    //% weight=13
     //% blockGap=8
     export function setDataBoolean(location: tiles.Location, key: string, value: boolean): void {
         setDataForLocation(location, key, value);
@@ -84,7 +84,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=10
+    //% weight=12
     //% blockGap=8
     export function readDataBoolean(location: tiles.Location, key: string): boolean {
         return getDataForLocation(location, key) as boolean || false;
@@ -97,7 +97,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=9
+    //% weight=11
     //% blockGap=8
     export function setDataString(location: tiles.Location, key: string, value: string): void {
         setDataForLocation(location, key, value);
@@ -110,7 +110,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=8
+    //% weight=10
     //% blockGap=8
     export function readDataString(location: tiles.Location, key: string): string {
         return getDataForLocation(location, key) as string || "";
@@ -123,7 +123,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=7
+    //% weight=9
     //% blockGap=8
     export function setDataNumber(location: tiles.Location, key: string, value: number): void {
         setDataForLocation(location, key, value);
@@ -136,7 +136,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=6
+    //% weight=8
     //% blockGap=8
     export function changeDataNumber(location: tiles.Location, key: string, value: number): void {
         let currentValue = readDataNumber(location, key);
@@ -150,7 +150,7 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=5
+    //% weight=7
     //% blockGap=8
     export function readDataNumber(location: tiles.Location, key: string): number {
         return getDataForLocation(location, key) as number || 0;
@@ -164,7 +164,7 @@ namespace tiles {
     //% value.shadow=screen_image_picker
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=4
+    //% weight=6
     //% blockGap=8
     export function setDataImage(location: tiles.Location, key: string, value: Image): void {
         setDataForLocation(location, key, value);
@@ -177,10 +177,37 @@ namespace tiles {
     //% location.shadow=mapgettile
     //% blockNamespace=scene color="#401255"
     //% group="Data"
-    //% weight=3
+    //% weight=5
     //% blockGap=8
     export function readDataImage(location: tiles.Location, key: string): Image | undefined {
         return getDataForLocation(location, key) as Image;
+    }
+
+    /**
+     * Sets a location in the data of a tile
+     */
+    //% blockId=tileDataSetImage block="set $location $key to location $value"
+    //% location.shadow=mapgettile
+    //% value.shadow=mapgettile
+    //% blockNamespace=scene color="#401255"
+    //% group="Data"
+    //% weight=4
+    //% blockGap=8
+    export function setDataLocation(location: tiles.Location, key: string, value: tiles.Location): void {
+        setDataForLocation(location, key, value);
+    }
+
+    /**
+     * Gets a location in the data of a tile
+     */
+    //% blockId=tileDataGetImage block="$location data $key as location"
+    //% location.shadow=mapgettile
+    //% blockNamespace=scene color="#401255"
+    //% group="Data"
+    //% weight=3
+    //% blockGap=8
+    export function readDataLocation(location: tiles.Location, key: string): tiles.Location | undefined {
+        return getDataForLocation(location, key) as tiles.Location;
     }
 
     /**
